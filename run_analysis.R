@@ -34,12 +34,12 @@ dataset <- rbind(training, testing)
 #Only select columns means and sd's
 colNames  = colnames(dataset);
 datasetMeanStd <- dataset[, (grepl("activity..",colNames) |
-														 	grepl("subject..",colNames) |
-														 	grepl("-mean..",colNames) &
-														 	!grepl("-meanFreq..",colNames) &
-														 	!grepl("mean..-",colNames) |
-														 	grepl("-std..",colNames) &
-														 	!grepl("-std()..-",colNames))]
+	grepl("subject..",colNames) |
+	grepl("-mean..",colNames) &
+	!grepl("-meanFreq..",colNames) &
+	!grepl("mean..-",colNames) |
+	grepl("-std..",colNames) &
+	!grepl("-std()..-",colNames))]
 
 #Replace activity levels with text
 datasetMeanStd$activityId[datasetMeanStd$activityId == 1] <- "Walking"
@@ -52,18 +52,18 @@ datasetMeanStd$activityId[datasetMeanStd$activityId == 6] <- "Laying"
 #Replace variable names/columns with better text
 colNames = colnames(datasetMeanStd)
 for (i in 1:length(colNames)) {
-		colNames[i] = gsub("\\()","",colNames[i])
-		colNames[i] = gsub("-std$","StdDev",colNames[i])
-		colNames[i] = gsub("-mean","Mean",colNames[i])
-		colNames[i] = gsub("^(t)","time",colNames[i])
-		colNames[i] = gsub("^(f)","freq",colNames[i])
-		colNames[i] = gsub("([Gg]ravity)","Gravity",colNames[i])
-		colNames[i] = gsub("([Bb]ody[Bb]ody|[Bb]ody)","Body",colNames[i])
-		colNames[i] = gsub("[Gg]yro","Gyro",colNames[i])
-		colNames[i] = gsub("AccMag","AccMagnitude",colNames[i])
-		colNames[i] = gsub("([Bb]odyaccjerkmag)","BodyAccJerkMagnitude",colNames[i])
-		colNames[i] = gsub("JerkMag","JerkMagnitude",colNames[i])
-		colNames[i] = gsub("GyroMag","GyroMagnitude",colNames[i])
+	colNames[i] = gsub("\\()","",colNames[i])
+	colNames[i] = gsub("-std$","StdDev",colNames[i])
+	colNames[i] = gsub("-mean","Mean",colNames[i])
+	colNames[i] = gsub("^(t)","time",colNames[i])
+	colNames[i] = gsub("^(f)","freq",colNames[i])
+	colNames[i] = gsub("([Gg]ravity)","Gravity",colNames[i])
+	colNames[i] = gsub("([Bb]ody[Bb]ody|[Bb]ody)","Body",colNames[i])
+	colNames[i] = gsub("[Gg]yro","Gyro",colNames[i])
+	colNames[i] = gsub("AccMag","AccMagnitude",colNames[i])
+	colNames[i] = gsub("([Bb]odyaccjerkmag)","BodyAccJerkMagnitude",colNames[i])
+	colNames[i] = gsub("JerkMag","JerkMagnitude",colNames[i])
+	colNames[i] = gsub("GyroMag","GyroMagnitude",colNames[i])
 }
 colnames(datasetMeanStd) = colNames
 
